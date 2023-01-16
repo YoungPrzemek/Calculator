@@ -7,6 +7,7 @@ const equales = document.querySelector('.equales')
 const previousScore = document.querySelector('.previous-score')
 const currentScore = document.querySelector('.current-score')
 const errorInfo = document.querySelector('.error')
+const closeBtn = document.querySelector('.close')
 
 let currentOperation = ''
 let previousOperation = ''
@@ -40,6 +41,7 @@ const calculate = () => {
 			break
 		case '÷':
 			if (currently === 0) {
+				errorInfo.style.display = 'grid'
 				clearAllNumbers()
 				return
 			}
@@ -72,7 +74,8 @@ const mathOperations = operate => {
 
 	if (previousOperation !== '') {
 		const past = previousScore.innerText
-		if (currentoperation.toString() === '0' && past[past.lenght-1] === '÷') {
+		if (currentoperation.toString() === '0' && past[past.lenght - 1] === '÷') {
+			errorInfo.style.display = 'grid'
 			clearAllNumbers()
 			return
 		}
@@ -100,6 +103,14 @@ const add = number => {
 	}
 	currentOperation = currentOperation.toString() + number.toString()
 }
+// const closeModalError = () => {
+// 	if (!(errorInfo.style.display === 'grid')) {
+// 		errorInfo.style.display = 'grid'
+// 	}else {
+// 		errorInfo.style.display = 'none'
+// 	}
+// 	errorInfo.classList.toggle('modal-animation')
+// }
 
 number.forEach(number => {
 	number.addEventListener('click', () => {
@@ -119,12 +130,15 @@ const clearAllNumbers = () => {
 }
 
 //Nasłuchiwanie na przyciski
-
 operateMath.forEach(operate => {
 	operate.addEventListener('click', () => {
 		mathOperations(operate.innerText)
 		updateResult()
 	})
+})
+closeBtn.addEventListener('click', () => {
+	closeModalError()
+	updateResult()
 })
 equales.addEventListener('click', () => {
 	calculate()
@@ -135,7 +149,7 @@ clearOne.addEventListener('click', () => {
 	clearNumber()
 	updateResult()
 })
-clearAll.addEventListener('click', ()=> {
+clearAll.addEventListener('click', () => {
 	clearAllNumbers()
 	updateResult()
 })
