@@ -103,14 +103,14 @@ const add = number => {
 	}
 	currentOperation = currentOperation.toString() + number.toString()
 }
-// const closeModalError = () => {
-// 	if (!(errorInfo.style.display === 'grid')) {
-// 		errorInfo.style.display = 'grid'
-// 	}else {
-// 		errorInfo.style.display = 'none'
-// 	}
-// 	errorInfo.classList.toggle('modal-animation')
-// }
+const closeModalError = () => {
+	if (!(errorInfo.style.display === 'grid')) {
+		errorInfo.style.display = 'grid'
+	}else {
+		errorInfo.style.display = 'none'
+	}
+	errorInfo.classList.toggle('modal-animation')
+}
 
 number.forEach(number => {
 	number.addEventListener('click', () => {
