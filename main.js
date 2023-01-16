@@ -54,7 +54,7 @@ const calculate = () => {
 			mathOperate = (past / 100) * currently
 			break
 		case '^':
-			mathOperate = Math.pow(past, aktulane)
+			mathOperate = Math.pow(past, currently)
 			break
 		case 'log':
 			mathOperate = Math.log(past) / Math.log(currently)
