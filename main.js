@@ -29,23 +29,39 @@ const calculate = () => {
 
 	switch (operation) {
 		case '+':
-            mathOperate = past + currently
+			mathOperate = past + currently
 			break
-        case '-':
-                mathOperate = past - currently
-            break
-        case '×':
-                mathOperate = past × currently
-            break
-        case '÷':
-                mathOperate = past / currently
-            break
-        case '√':
-                mathOperate = Math.pow(past, 1/currently)
-            break
+		case '-':
+			mathOperate = past - currently
+			break
+		case 'x':
+			mathOperate = past * currently
+			break
+		case '÷':
+			if (currently === 0) {
+				clearAllNumbers()
+				return
+			}
+			mathOperate = past / currently
+			break
+		case '√':
+			mathOperate = Math.pow(past, 1 / currently)
+			break
+		case '%':
+			mathOperate = (past / 100) * currently
+			break
+		case '^':
+			mathOperate = Math.pow(past, aktulane)
+			break
+		case 'log':
+			mathOperate = Math.log(past) / Math.log(currently)
+			break
 		default:
-			break
+			return
 	}
+	currentOperation = mathOperate
+	operation = undefined
+	previousOperation = ''
 }
 
 const mathOperations = operate => {
@@ -54,6 +70,11 @@ const mathOperations = operate => {
 	}
 
 	if (previousOperation !== '') {
+		const past = previousScore.innerText
+		if (currentoperation.toString() === '0' && past[past.lenght-1] === '÷') {
+			clearAllNumbers()
+			return
+		}
 		calculate()
 	}
 	operation = operate
@@ -86,9 +107,17 @@ number.forEach(number => {
 	})
 })
 
+// Usuwanie liczb
 const clearNumber = () => {
 	currentOperation = currentOperation.toString().slice(0, -1)
 }
+const clearAllNumbers = () => {
+	currentOperation = ''
+	previousOperation = ''
+	operation = undefined
+}
+
+//Nasłuchiwanie na przyciski
 
 operateMath.forEach(operate => {
 	operate.addEventListener('click', () => {
@@ -96,18 +125,16 @@ operateMath.forEach(operate => {
 		updateResult()
 	})
 })
+equales.addEventListener('click', () => {
+	calculate()
+	updateResult()
+})
 
-// const clearAllNumber = () => {
-//     currentOperation = currentOperation.toString().slice(0)
-// }
-
-//Nasłuchiwanie na przyciski
 clearOne.addEventListener('click', () => {
 	clearNumber()
 	updateResult()
 })
-
-// clearAll.addEventListener('click', () =>{
-//     clearAllNumber()
-//     updateResult()
-// })
+clearAll.addEventListener('click', ()=> {
+	clearAllNumbers()
+	updateResult()
+})
