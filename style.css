@@ -1,69 +1,99 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 html {
-    font-family: 'Monserrat', arial;
+	font-family: 'Monserrat', arial;
 }
 
 *::after ::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    background-color:#bbb;
-    display: flex;
-    justify-content: center;
-    align-content: center;
+	height: 100vh;
+	background-color: #bbb;
+	display: flex;
+	justify-content: center;
+	align-content: center;
 }
 .calculator {
-    height: 60vh;
-    min-width: 350px;
-    max-width: 350px;
-    padding-top: 15%;
+	height: 60vh;
+	min-width: 350px;
+	max-width: 350px;
+	padding-top: 15%;
 }
 
 .display {
-    width: 100%;
-    min-height: 20%;
-    max-height: min-content;
-    background-color: rgba(247, 7, 7, 0.726);
-    color: white;
-    text-align: right;
-    word-break: break-all;
-    display: flex;
-    justify-content:space-between;
-    flex-direction: column;
-    /* padding-right: 5px; */
-    font-weight: bold;
+	width: 100%;
+	min-height: 20%;
+	max-height: min-content;
+	background-color: rgba(247, 7, 7, 0.726);
+	color: white;
+	text-align: right;
+	word-break: break-all;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	/* padding-right: 5px; */
+	font-weight: bold;
 }
 .previous-score {
-    font-size: 20px;
+	font-size: 20px;
 }
 .current-score {
-    font-size: 35px;
+	font-size: 35px;
 }
 .panel {
-    height: 80%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6 , 1fr);
-    gap: 3px;
+	height: 80%;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+	gap: 3px;
 }
 .panel button {
-    font-size: 25px;
-    box-shadow: 0 2px 20px -20px black;
-    background-color: rgba(95, 90, 90, 0.836);
-    color: white;
-    cursor: pointer;
+	font-size: 25px;
+	box-shadow: 0 2px 20px -20px black;
+	background-color: rgba(95, 90, 90, 0.836);
+	color: white;
+	cursor: pointer;
 }
 .panel button:hover {
-    background-color: rgba(77, 73, 73, 0.836);
+	background-color: rgba(77, 73, 73, 0.836);
 }
 .equales {
-    grid-column: span 2;
+	grid-column: span 2;
 }
 .panel button:nth-child(20) {
-    grid-row: span 2;
+	grid-row: span 2;
+}
+
+.error {
+	display: none;
+	position: absolute;
+    top: -30%;
+	width: 350px;
+	height: 100px;
+	border-radius: 8px;
+	background-color: #fff;
+	border: 2px solid black;
+}
+.error-info {
+    display: grid;
+	position: absolute;
+    top: 30%;
+    animation: errorAnimation 3s;
+}
+@keyframes errorAnimation {
+    from {
+        top: -30%;
+    }
+    to {
+        display: none;
+        top: 30%;
+    }
+}
+.error-text {
+    align-self: center;
+    justify-self: center;
 }

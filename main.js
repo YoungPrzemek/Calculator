@@ -6,6 +6,7 @@ const clearOne = document.querySelector('.clear-one')
 const equales = document.querySelector('.equales')
 const previousScore = document.querySelector('.previous-score')
 const currentScore = document.querySelector('.current-score')
+const errorInfo = document.querySelector('.error')
 
 let currentOperation = ''
 let previousOperation = ''
